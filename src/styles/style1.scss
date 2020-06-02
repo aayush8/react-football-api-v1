@@ -1,0 +1,17 @@
+$leagueBgColor: cadetblue;
+
+.leaguelogos {
+  height: 210px;
+  width: 200px;
+  padding: 2em;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $leagueBgColor;
+  }
+}
+
+#bigtext {
+  font-size: 1.5em;
+  word-spacing: 0.15em;
+}

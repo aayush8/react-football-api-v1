@@ -1,26 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
+
+import Home from './components/home'
+import Epl from './epl'
+import Laliga from './laliga'
+import Seriea from './seriea'
+import Bundesliga from './bundesliga'
+import Ligue1 from './ligue1'
+import Brazila from './brazila'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Router>
+      <Route path='/' exact component={Home} />
+      <Route path='/epl' component={Epl} />
+      <Route path='/laliga' component={Laliga} />
+      <Route path='/seriea' component={Seriea} />
+      <Route path='/bundesliga' component={Bundesliga} />
+      <Route path='/ligue1' component={Ligue1} />
+      <Route path='/brazila' component={Brazila} />
+    </Router>
+  )
 }
 
-export default App;
+export default () => <App />

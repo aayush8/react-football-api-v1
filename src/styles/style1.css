@@ -1,0 +1,16 @@
+.leaguelogos {
+  height: 210px;
+  width: 200px;
+  padding: 2em;
+  cursor: pointer;
+}
+
+.leaguelogos:hover {
+  background-color: cadetblue;
+}
+
+#bigtext {
+  font-size: 1.5em;
+  word-spacing: 0.15em;
+}
+/*# sourceMappingURL=style1.css.map */
