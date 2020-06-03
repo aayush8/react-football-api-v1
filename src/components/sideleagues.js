@@ -14,17 +14,18 @@ const leagues = [
 export default function sideleagues({ exception }) {
   return (
     <div className='justify-content-center'>
-      {/* {console.log(leagues)} */}
       {leagues.map((league) => (
         <div
-          className={league.link == exception ? 'd-none' : 'mb-3'}
+          className={league.link === exception ? 'd-none' : 'mb-3'}
           key={league.link}>
+          {console.log('I am in ' + league.link)}
           <Link to={league.link}>
             <img
               src={league.src}
-              alt=''
+              alt={league.link}
               className='img-thumbnail leaguelogos'
             />
+            {console.log(league.src)}
           </Link>
         </div>
       ))}

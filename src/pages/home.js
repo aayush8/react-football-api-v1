@@ -2,12 +2,12 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 const leagues = [
-  { link: '/epl', src: 'assets/epl.png' },
-  { link: '/laliga', src: 'assets/laliga.png' },
-  { link: '/bundesliga', src: 'assets/bundesliga.png' },
-  { link: '/ligue1', src: 'assets/french.png' },
-  { link: '/seriea', src: 'assets/serieap1.png' },
-  { link: '/brazila', src: 'assets/brazil.png' },
+  { id: '1204', src: 'assets/epl.png' },
+  { id: '1399', src: 'assets/laliga.png' },
+  { id: '1229', src: 'assets/bundesliga.png' },
+  { id: '1221', src: 'assets/french.png' },
+  { id: '1269', src: 'assets/serieap1.png' },
+  { id: '1141', src: 'assets/brazil.png' },
 ]
 
 export default () => {
@@ -27,10 +27,15 @@ export default () => {
           </li>
         </ul>
       </div>
+      <div className='container-fluid'>
+        <h1 className='display-4'>Top Domestic Leagues</h1>
+      </div>
       <div className='row'>
         {leagues.map((league) => (
-          <div className='col-xl-2 col-lg-3 col-sm-4 col-6 my-3'>
-            <Link to={league.link}>
+          <div
+            className='col-xl-2 col-lg-3 col-sm-4 col-6 my-3'
+            key={league.id}>
+            <Link to={`/league/${league.id}`}>
               <img
                 src={league.src}
                 alt=''
