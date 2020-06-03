@@ -1,6 +1,18 @@
 import React from 'react'
 
 export default ({ standings, name }) => {
+  if (standings === undefined)
+    return (
+      <div className='container'>
+        <h1 className='display-4'>
+          Sorry, but the API currently has no data for this competition .. check
+          back again later ...
+        </h1>
+        <a className='display-4' href='/'>
+          Back to HomePage
+        </a>
+      </div>
+    )
   return (
     <div className='container'>
       <h1 className='display-4'>{`${name[0].region} ${name[0].name}`}</h1>

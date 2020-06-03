@@ -13,4 +13,24 @@
   font-size: 1.5em;
   word-spacing: 0.15em;
 }
+
+.league-search input {
+  max-width: 50em;
+}
+
+.result-league-name {
+  border: 2px solid white;
+  padding: 0.5em;
+}
+
+.result-league-name:hover {
+  cursor: pointer;
+  color: red;
+  border-color: red;
+  text-decoration: none;
+}
+
+.result-league-name a:hover {
+  text-decoration: none;
+}
 /*# sourceMappingURL=style1.css.map */

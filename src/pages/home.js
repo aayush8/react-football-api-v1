@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { fetchFootballAPI } from '../api/footballapi'
+import Searchresult from '../components/searchresult'
+// import Test from '../components/test'
 
 const leagues = [
   { id: '1204', src: 'assets/epl.png' },
@@ -12,7 +14,15 @@ const leagues = [
 ]
 
 export default () => {
+  //this is for debug component mode
+  // return <Test />
+
   const [allComps, setallComps] = useState([])
+  const [inputValue, setInputValue] = useState('')
+
+  const handleChange = (value) => {
+    setInputValue(value)
+  }
 
   useEffect(() => {
     fetchFootballAPI(
@@ -37,7 +47,24 @@ export default () => {
           </li>
         </ul>
       </div>
-      <div className='container-fluid'>
+      <div className='input-group my-3 league-search'>
+        <div className='input-group-prepend'>
+          <button className='btn btn-outline-secondary' type='button'>
+            Search for leagues
+          </button>
+        </div>
+        <input
+          value={inputValue}
+          onChange={($event) => handleChange($event.target.value)}
+          type='text'
+          className='form-control'
+          placeholder='eg. premier league'
+          aria-label=''
+          aria-describedby='basic-addon1'
+        />
+      </div>
+      <Searchresult search={inputValue} allComps={allComps} />
+      <div>
         <h1 className='display-4'>Top Domestic Leagues</h1>
       </div>
       <div className='row'>
