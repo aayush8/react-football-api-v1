@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
+import moment from 'moment'
 
-export default ({ standings, name }) => {
+export default ({ standings, name, upcomingFixtures }) => {
   if (standings === undefined)
     return (
       <div className='container'>
@@ -16,17 +17,46 @@ export default ({ standings, name }) => {
     )
   return (
     <div className='container-fluid px-4'>
-      <div className='d-flex '>
-        <div className='text-center mr-4'>
-          <Link to='/'>
-            <img
-              src='../assets/home.png'
-              alt='Home'
-              className='img-fluid leaguelogos homelogo mt-2'
-            />
-          </Link>
+      <div className='d-flex justify-content-between'>
+        <div className='d-flex'>
+          <div className='text-center mr-4'>
+            <Link to='/'>
+              <img
+                src='../assets/home.png'
+                alt='Home'
+                className='img-fluid leaguelogos homelogo mt-2'
+              />
+            </Link>
+          </div>
+          <h1 className='display-4 my-4'>
+            {name !== undefined
+              ? `${name[0].region} ${name[0].name}`
+              : 'Check back later ...'}
+          </h1>
         </div>
-        <h1 className='display-4 my-4'>{`${name[0].region} ${name[0].name}`}</h1>
+        <div class='dropdown align-self-center mr-5'>
+          <button
+            class='btn btn-secondary dropdown-toggle'
+            type='button'
+            id='dropdownMenuButton'
+            data-toggle='dropdown'
+            aria-haspopup='true'
+            aria-expanded='false'>
+            Display Time
+          </button>
+          <div className='dropdown-menu' aria-labelledby='dropdownMenuButton'>
+            <button
+              className='dropdown-item'
+              onClick={console.log('Hello from calendar time')}>
+              by Calender time
+            </button>
+            <button
+              className='dropdown-item'
+              onClick={console.log('Hello from relative time')}>
+              by Relative time
+            </button>
+          </div>
+        </div>
       </div>
       <div className='row'>
         <div className='table-responsive col-lg-9'>
@@ -73,6 +103,24 @@ export default ({ standings, name }) => {
         </div>
         <div className='table-responsive col-lg-3 d-none d-lg-block'>
           <h1 className='display-4 text-center mb-3'> Upcoming Fixtures</h1>
+          {upcomingFixtures !== undefined ? (
+            upcomingFixtures.slice(0, 11).map((match) => (
+              <div key={match.id}>
+                <p className='lead text-center'>
+                  {`${match.localteam_name} vs ${match.visitorteam_name}`}
+                  <br />
+                  {moment(
+                    `${match.formatted_date} ${match.time}`,
+                    'DD.MM.YYYY hh:mm'
+                  ).format('MMMM Do YYYY, hh:mm a')}
+                </p>
+              </div>
+            ))
+          ) : (
+            <p className='lead text-danger'>
+              No fixtures for upcoming 30 days ...
+            </p>
+          )}
         </div>
       </div>
     </div>
