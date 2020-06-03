@@ -19,7 +19,9 @@ export default ({ standings, name }) => {
                 <th scope='col'>+/-</th>
                 <th scope='col'>GD</th>
                 <th scope='col'>Pts</th>
-                <th scope='col'>Form</th>
+                <th scope='col' className='d-none d-md-table-cell'>
+                  Form
+                </th>
               </tr>
             </thead>
             <tbody>
@@ -34,7 +36,7 @@ export default ({ standings, name }) => {
                   <td>{`${team.overall_gs}-${team.overall_ga}`}</td>
                   <td>{team.gd}</td>
                   <td>{team.points}</td>
-                  <td>
+                  <td className='d-none d-md-table-cell'>
                     {team.recent_form === null
                       ? team.recent_form
                       : team.recent_form.split('').join(' ')}
