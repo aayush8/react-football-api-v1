@@ -31,6 +31,7 @@
 }
 
 .result-league-name a:hover {
+  color: red;
   text-decoration: none;
 }
 /*# sourceMappingURL=style1.css.map */
