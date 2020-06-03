@@ -1,10 +1,11 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 export default ({ standings, name }) => {
   if (standings === undefined)
     return (
       <div className='container'>
-        <h1 className='display-4'>
+        <h1 className='display-4 my-4'>
           Sorry, but the API currently has no data for this competition .. check
           back again later ...
         </h1>
@@ -14,10 +15,21 @@ export default ({ standings, name }) => {
       </div>
     )
   return (
-    <div className='container'>
-      <h1 className='display-4'>{`${name[0].region} ${name[0].name}`}</h1>
+    <div className='container-fluid px-4'>
+      <div className='d-flex '>
+        <div className='text-center mr-4'>
+          <Link to='/'>
+            <img
+              src='../assets/home.png'
+              alt='Home'
+              className='img-fluid leaguelogos homelogo mt-2'
+            />
+          </Link>
+        </div>
+        <h1 className='display-4 my-4'>{`${name[0].region} ${name[0].name}`}</h1>
+      </div>
       <div className='row'>
-        <div className='table-responsive'>
+        <div className='table-responsive col-lg-9'>
           <table className='table table-striped'>
             <thead>
               <tr>
@@ -58,6 +70,9 @@ export default ({ standings, name }) => {
               ))}
             </tbody>
           </table>
+        </div>
+        <div className='table-responsive col-lg-3 d-none d-lg-block'>
+          <h1 className='display-4 text-center mb-3'> Upcoming Fixtures</h1>
         </div>
       </div>
     </div>

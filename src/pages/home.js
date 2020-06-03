@@ -5,12 +5,18 @@ import Searchresult from '../components/searchresult'
 // import Test from '../components/test'
 
 const leagues = [
-  { id: '1204', src: 'assets/epl.png' },
-  { id: '1399', src: 'assets/laliga.png' },
-  { id: '1229', src: 'assets/bundesliga.png' },
-  { id: '1221', src: 'assets/french.png' },
-  { id: '1269', src: 'assets/serieap1.png' },
-  { id: '1141', src: 'assets/brazil.png' },
+  { id: '1204', name: 'epl' },
+  { id: '1399', name: 'laliga' },
+  { id: '1229', name: 'bundesliga' },
+  { id: '1221', name: 'french ligue1' },
+  { id: '1269', name: 'serie a' },
+  { id: '1141', name: 'brazil a' },
+  { id: '1440', name: 'mls' },
+  { id: '1081', name: 'argentina superliga' },
+  { id: '1271', name: 'japan j league 1' },
+  { id: '1282', name: 'south korea league1' },
+  { id: '1322', name: 'holland erdesive' },
+  { id: '1352', name: 'portugal liga' },
 ]
 
 export default () => {
@@ -26,14 +32,13 @@ export default () => {
 
   useEffect(() => {
     fetchFootballAPI(
-      'https://data.football-api.com/v3/competitions?Authorization=cfnR6LWc4i4MDFLlPJrajoa465c4qjF594kpIy4b',
-      'logresult'
+      'https://data.football-api.com/v3/competitions?Authorization=cfnR6LWc4i4MDFLlPJrajoa465c4qjF594kpIy4b'
     ).then((value) => setallComps(value))
   }, [])
 
   return (
     <div className='container-fluid'>
-      <div className='alert alert-info m-5 d-none d-md-block' role='alert'>
+      <div className='alert alert-info m-5 d-none d-lg-block' role='alert'>
         <ul id='bigtext'>
           <li>Note that the project depends on football-api data to work</li>
           <li>Free version of football-api is used in this project</li>
@@ -74,7 +79,7 @@ export default () => {
             key={league.id}>
             <Link to={`/league/${league.id}`}>
               <img
-                src={league.src}
+                src={`assets/${league.id}.png`}
                 alt=''
                 className='img-thumbnail leaguelogos'
               />

@@ -9,6 +9,14 @@
   background-color: cadetblue;
 }
 
+.homelogo {
+  height: 90px;
+  width: 100px;
+  padding: 0.5em;
+  padding-right: 1em;
+  padding-left: 1em;
+}
+
 #bigtext {
   font-size: 1.5em;
   word-spacing: 0.15em;
