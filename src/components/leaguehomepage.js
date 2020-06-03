@@ -1,5 +1,4 @@
 import React from 'react'
-import Sideleagues from './sideleagues'
 
 export default ({ standings, name }) => {
   return (
@@ -16,7 +15,9 @@ export default ({ standings, name }) => {
                 <th scope='col'>W</th>
                 <th scope='col'>D</th>
                 <th scope='col'>L</th>
-                <th scope='col'>+/-</th>
+                <th scope='col' className='d-none d-md-table-cell'>
+                  +/-
+                </th>
                 <th scope='col'>GD</th>
                 <th scope='col'>Pts</th>
                 <th scope='col' className='d-none d-md-table-cell'>
@@ -33,7 +34,7 @@ export default ({ standings, name }) => {
                   <td>{team.overall_w}</td>
                   <td>{team.overall_d}</td>
                   <td>{team.overall_l}</td>
-                  <td>{`${team.overall_gs}-${team.overall_ga}`}</td>
+                  <td className='d-none d-md-table-cell'>{`${team.overall_gs}-${team.overall_ga}`}</td>
                   <td>{team.gd}</td>
                   <td>{team.points}</td>
                   <td className='d-none d-md-table-cell'>

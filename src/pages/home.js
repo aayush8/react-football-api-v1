@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import { fetchFootballAPI } from '../api/footballapi'
 
 const leagues = [
   { id: '1204', src: 'assets/epl.png' },
@@ -11,6 +12,15 @@ const leagues = [
 ]
 
 export default () => {
+  const [allComps, setallComps] = useState([])
+
+  useEffect(() => {
+    fetchFootballAPI(
+      'https://data.football-api.com/v3/competitions?Authorization=cfnR6LWc4i4MDFLlPJrajoa465c4qjF594kpIy4b',
+      'logresult'
+    ).then((value) => setallComps(value))
+  }, [])
+
   return (
     <div className='container-fluid'>
       <div className='alert alert-info m-5 d-none d-md-block' role='alert'>
