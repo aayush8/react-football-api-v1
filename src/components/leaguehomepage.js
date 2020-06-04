@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom'
 import moment from 'moment'
 
 export default ({ standings, name, upcomingFixtures }) => {
+  const [displayRelativeTime, setDisplayRelativeTime] = useState(false)
+
   if (standings === undefined)
     return (
       <div className='container'>
@@ -34,9 +36,9 @@ export default ({ standings, name, upcomingFixtures }) => {
               : 'Check back later ...'}
           </h1>
         </div>
-        <div class='dropdown align-self-center mr-5'>
+        <div className='dropdown align-self-center mr-5'>
           <button
-            class='btn btn-secondary dropdown-toggle'
+            className='btn btn-secondary dropdown-toggle'
             type='button'
             id='dropdownMenuButton'
             data-toggle='dropdown'
@@ -47,12 +49,12 @@ export default ({ standings, name, upcomingFixtures }) => {
           <div className='dropdown-menu' aria-labelledby='dropdownMenuButton'>
             <button
               className='dropdown-item'
-              onClick={console.log('Hello from calendar time')}>
+              onClick={() => setDisplayRelativeTime(false)}>
               by Calender time
             </button>
             <button
               className='dropdown-item'
-              onClick={console.log('Hello from relative time')}>
+              onClick={() => setDisplayRelativeTime(true)}>
               by Relative time
             </button>
           </div>
@@ -109,10 +111,10 @@ export default ({ standings, name, upcomingFixtures }) => {
                 <p className='lead text-center'>
                   {`${match.localteam_name} vs ${match.visitorteam_name}`}
                   <br />
-                  {moment(
-                    `${match.formatted_date} ${match.time}`,
-                    'DD.MM.YYYY hh:mm'
-                  ).format('MMMM Do YYYY, hh:mm a')}
+                  {getDateAndTime(
+                    displayRelativeTime,
+                    `${match.formatted_date} ${match.time}`
+                  )}
                 </p>
               </div>
             ))
@@ -125,4 +127,17 @@ export default ({ standings, name, upcomingFixtures }) => {
       </div>
     </div>
   )
+}
+
+//format to pass dateandtime is 06.20.2020 18:30
+const getDateAndTime = (isRelativeTime, dateandtime) => {
+  if (isRelativeTime) {
+    //code to return relative time
+    return moment(dateandtime, 'DD.MM.YYYY hh:mm').fromNow()
+  } else {
+    //code to return calendar time
+    return moment(dateandtime, 'DD.MM.YYYY hh:mm').format(
+      'MMMM Do YYYY, hh:mm a'
+    )
+  }
 }
