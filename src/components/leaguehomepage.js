@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import moment from 'moment'
 
 export default ({ standings, name, upcomingFixtures }) => {
-  const [displayRelativeTime, setDisplayRelativeTime] = useState(false)
+  const [displayRelativeTime, setDisplayRelativeTime] = useState('default')
 
   if (standings === undefined)
     return (
@@ -49,13 +49,18 @@ export default ({ standings, name, upcomingFixtures }) => {
           <div className='dropdown-menu' aria-labelledby='dropdownMenuButton'>
             <button
               className='dropdown-item'
-              onClick={() => setDisplayRelativeTime(false)}>
-              by Calender time
+              onClick={() => setDisplayRelativeTime('default')}>
+              Default
             </button>
             <button
               className='dropdown-item'
-              onClick={() => setDisplayRelativeTime(true)}>
-              by Relative time
+              onClick={() => setDisplayRelativeTime('relative')}>
+              Relative
+            </button>
+            <button
+              className='dropdown-item'
+              onClick={() => setDisplayRelativeTime('calendar')}>
+              Calendar
             </button>
           </div>
         </div>
@@ -130,14 +135,18 @@ export default ({ standings, name, upcomingFixtures }) => {
 }
 
 //format to pass dateandtime is 06.20.2020 18:30
-const getDateAndTime = (isRelativeTime, dateandtime) => {
-  if (isRelativeTime) {
+const getDateAndTime = (timeorder, dateandtime) => {
+  if (timeorder === 'relative') {
     //code to return relative time
     return moment(dateandtime, 'DD.MM.YYYY hh:mm').fromNow()
-  } else {
+  } else if (timeorder === 'default') {
     //code to return calendar time
     return moment(dateandtime, 'DD.MM.YYYY hh:mm').format(
       'MMMM Do YYYY, hh:mm a'
     )
+  }
+  //for calendar time
+  else {
+    return moment(dateandtime, 'DD.MM.YYYY hh:mm').calendar()
   }
 }
